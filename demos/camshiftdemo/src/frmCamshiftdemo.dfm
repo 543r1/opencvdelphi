@@ -24,7 +24,6 @@ object fCamshiftdemo: TfCamshiftdemo
     Height = 118
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 372
     object Label1: TLabel
       Left = 20
       Top = 20
@@ -102,8 +101,6 @@ object fCamshiftdemo: TfCamshiftdemo
     Height = 312
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 372
-    ExplicitHeight = 279
     object formImage: TImage
       Left = 1
       Top = 1

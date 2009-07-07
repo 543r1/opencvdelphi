@@ -39,13 +39,13 @@ var
   fCamshiftdemo: TfCamshiftdemo;
 
 {-----------------------}
-image: pIplImage = 0;
- hsv: pIplImage = 0;
- hue: pIplImage = 0;
- mask: pIplImage = 0;
- backproject: pIplImage = 0;
- histimg: pIplImage = 0;
-hist: PCvHistogram = 0;
+image: pIplImage = nil;
+ hsv: pIplImage = nil;
+ hue: pIplImage = nil;
+ mask: pIplImage = nil;
+ backproject: pIplImage = nil;
+ histimg: pIplImage = nil;
+hist: PCvHistogram = nil;
 
 backproject_mode: longint = 0;
 select_object: longint = 0;
@@ -115,7 +115,6 @@ var
         val: integer ;
         cs: CvSize;
         rec: TRect;
-        test: PChar;
 begin
     begin
         frame := cvQueryFrame( capture );
@@ -138,7 +137,7 @@ begin
             cvZero( histimg );
         end;
 
-        cvCopy( frame, image, 0 );
+        cvCopy( frame, image, nil );
         cvCvtColor( image, hsv, CV_BGR2HSV );
 
         if( track_object <> 0 ) then
@@ -149,7 +148,7 @@ begin
             cvInRangeS( hsv, cvScalar_(0, fCamshiftdemo.tbSmin.Position,
                         MIN(_vmin,_vmax),0),
                         cvScalar_(180,256,MAX(_vmin,_vmax),0), mask );
-            cvSplit( hsv, hue, 0, 0, 0 );
+            cvSplit( hsv, hue, nil, nil, nil );
 
             if( track_object < 0 ) then
             begin
@@ -157,7 +156,7 @@ begin
                 cvSetImageROI( hue, selection );
                 cvSetImageROI( mask, selection );
                 cvCalcHist( longint(@hue), hist, 0, mask );
-                cvGetMinMaxHistValue( hist, 0, @max_val, 0, 0 );
+                cvGetMinMaxHistValue( hist, nil, @max_val, nil, nil );
                 if (max_val <> 0) then
                    cvConvertScale( hist^.bins, hist^.bins, (255.0 / max_val), 0 )
                 else
@@ -181,7 +180,7 @@ begin
             end;
 
             cvCalcBackProject( @hue, backproject, hist );
-            cvAnd( backproject, mask, backproject, 0 );
+            cvAnd( backproject, mask, backproject, nil );
             cvCamShift( backproject, track_window,
                         cvTermCriteria_( (CV_TERMCRIT_EPS or CV_TERMCRIT_ITER), 10, 1 ),
                         @track_comp, @track_box );
@@ -200,7 +199,7 @@ begin
         if( select_object >0) and ( selection.width > 0) and ( selection.height > 0 ) then
         begin
             cvSetImageROI( image, selection );
-            cvXorS( image, cvScalarAll(255), image, 0 );
+            cvXorS( image, cvScalarAll(255), image, nil );
             cvResetImageROI( image );
         end;
 
