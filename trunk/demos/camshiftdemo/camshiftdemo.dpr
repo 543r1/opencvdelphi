@@ -4,12 +4,12 @@ uses
   Forms,
   frmHistogram in 'src\frmHistogram.pas' {fHistogram},
   frmCamshiftdemo in 'src\frmCamshiftdemo.pas' {fCamshiftdemo},
-  OpenCV_HighGUI in '..\..\src\OpenCV_HighGUI.pas',
-  Ipl in '..\..\src\Ipl.pas',
-  OpenCV in '..\..\src\OpenCV.pas',
-  OpenCV_CV in '..\..\src\OpenCV_CV.pas',
-  OpenCV_CVAUX in '..\..\src\OpenCV_CVAUX.pas',
-  OpenCV_CXCORE in '..\..\src\OpenCV_CXCORE.pas';
+  Ipl in '..\..\opencvdelphi\Ipl.pas',
+  OpenCV in '..\..\opencvdelphi\OpenCV.pas',
+  OpenCV_CV in '..\..\opencvdelphi\OpenCV_CV.pas',
+  OpenCV_CVAUX in '..\..\opencvdelphi\OpenCV_CVAUX.pas',
+  OpenCV_CXCORE in '..\..\opencvdelphi\OpenCV_CXCORE.pas',
+  OpenCV_HighGUI in '..\..\opencvdelphi\OpenCV_HighGUI.pas';
 
 {$R *.res}
 
